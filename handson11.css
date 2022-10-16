@@ -2,6 +2,9 @@ body{
     background-color:rgba(11, 29, 78, 0.801) ;
     
 }
+nav{
+    background-color: rgba(11, 29, 78, 0.801) ;
+}
 li{
     display: inline;
     float: right;
