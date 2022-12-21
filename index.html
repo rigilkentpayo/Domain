@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> JUMBLED WORDS </title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      color: #f80404;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: #ff9900;
+    }
+    .container {
+      height: 500px;
+      width: 500px;
+      background-color: #ffee00;
+      border-radius: 10px;
+      box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);
+  }
+    
+    .padd{
+      padding: 30px;
+    }
+
+    #score {
+      width: 115px;
+      height: 25px;
+      display: block;
+      align-items: center;
+      font-size: 20px;
+      padding: 5px 5px 5px 5px;
+      border: 2px solid rgb(255, 14, 6);
+      background-color: #fdc775;
+      
+    }
+
+    #gameName {
+      width: 100%;
+      display: block;
+      justify-content:center;
+      align-content: center;
+      font-size: 40px;
+      padding-top: 10px;
+      padding-bottom: 3px;
+      margin-left: 0px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      border-bottom: 1px solid #000000;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    #note {
+      width: 100%;
+      display: block;
+      align-items: center;
+      font-size: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-left: 80px;
+    }
+
+    #name {
+      width: 100%;
+      display: block;
+      align-items: center;
+      font-size: 13px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-top: 1px solid #fa0000;
+      margin-top: 40px;
+      margin-left: 0px;
+      font-weight: bold;
+      
+    }
+    .jumbled {
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 0px;
+      display: flex;
+      justify-content: center;
+      font-size: 40px;
+      text-transform: uppercase;
+      font-family: lucida sans;
+    }
+    
+    .user-input {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inp {
+      height: 40px;
+      font-size: 18px;
+      border: 2px solid rgb(243, 199, 199);
+      border-radius: 10px;
+      text-indent: 20px;
+      outline: none;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #FFE5F1;
+    }
+    
+    .btn {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background-color: #bb992967;
+      color:#fc0606;
+      text-transform: uppercase;
+      font-weight: bolder;
+      box-shadow: 6px 6px 10px 0px rgba(0, 0, 0, 0.4);
+
+    }
+
+    .btn:hover{
+      background-color: #f8ad0a;
+      color: #FFE5F1;
+      transition: .3s;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="padd"> 
+        <div class="score" >
+          <p id="gameName"> Word Scramble </p>
+          <p id="score"> Score: 0 </p>
+        </div>
+            
+        <div class="jumbled" >
+          <p id="j-word"> papel </p>
+        </div>
+        <p id="h-word">  </p>
+
+        <div class="user-input" >
+          <input type="text" class="inp" id="inp" placeholder="Type the correct word here">
+          <button class="btn" onclick="checkAnswer()"> S  u  b  m  i  t </button>
+          <p id="note"> Note:  Reload this page to restart the game. </p>
+          <p id="name"> RIGIL KENT PAYO</p>
+
+        </div>
+    </div>
+  </div>
+  
+  <script>
+
+    let words=
+    [
+      {
+        jumbled:"papel",
+        correct: "apple"
+      },
+      {
+        jumbled:"mputcoer",
+        correct: "computer"
+      },
+      {
+        jumbled:"boilem",
+        correct: "mobile"
+      },
+      {
+        jumbled:"letobt",
+        correct: "bottle"
+      },
+      {
+        jumbled:"arphenoe",
+        correct: "earphone"
+      }
+    ]
+
+    let currentWord=0;
+    let score=0;
+
+    function displayWord() 
+    {
+      document.querySelector("#j-word").innerText
+      = words[currentWord].jumbled;
+      
+      document.querySelector("#score").innerText="Score: "+score;
+    }
+
+    function checkAnswer()
+    {
+
+        let answer = document.querySelector("#inp").value;
+          if (answer.toLowerCase()===words[currentWord].correct.toLowerCase())
+          {
+            score++;
+          } 
+            
+        if(currentWord==words.length-1)
+        {
+          document.querySelector("#score").innerText="Final Score: "+score;
+          
+              let msg="";
+
+              if (score == 5) {
+                msg = "Well done champ! I knew you could master this <3 Your score is: "+ score;
+              } 
+              else if(score == 4) 
+              {
+                msg = "Good Job! You're getting better and better :> Your score is: "+ score;
+              } 
+              else 
+              {
+                msg = "Nice Try! You can definitely do better next time :) Your Score is: "+ score;
+              }
+
+          alert(msg);
+        } 
+        else 
+        {
+          currentWord++
+          
+          displayWord();
+
+          document.querySelector("#inp").value="";
+        }
+        
+      }
+
+  </script>
+</body>
+</html>
